@@ -13,12 +13,12 @@ export type WeatherItemData = {
 
 const Weather = () => {
 
-    const [weatherData, setWeatherData] = useState<WeatherItemData[] | null | undefined>(null);
-    const [filteredWeatherData, setFilteredWeatherData] = useState<WeatherItemData[] | null | undefined>(null);
+    const [weatherData, setWeatherData] = useState<WeatherItemData[]>([]);
+    const [filteredWeatherData, setFilteredWeatherData] = useState<WeatherItemData[]>([]);
 
 
     const getWeatherData = () => {
-        axios.get('https://danepubliczne.imgw.pl/api/data/synop')
+        axios.get<WeatherItemData[]>('https://danepubliczne.imgw.pl/api/data/synop')
             .then(res => {
                 setWeatherData(res.data);
                 setFilteredWeatherData(res.data);
